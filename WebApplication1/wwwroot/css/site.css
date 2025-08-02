@@ -1,0 +1,913 @@
+/* весь сайт */
+* {
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+
+@font-face {
+    font-family: opensans;
+    font-weight: normal;
+    font-style: normal;
+    src: url("../fonts/OpenSansLight.ttf");
+}
+
+body {
+    font-family: "opensans";
+   background: LightSteelBlue;
+}
+
+html {
+  font-size: 14px;
+}
+div p span1
+{
+    font-size:25px;
+}
+/*для разграничения полей*/
+.mainBox 
+{
+    width: 100%;
+    background: aqua;
+     background-color: #fff;
+    border: 5px double #4a90e2;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+    .mainBox:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    }
+
+/* 1) основное меню*/
+#Menu {
+    position: relative; /* Чтобы абсолютный элемент внутри позиционировался относительно этого */
+    width: 20%; /*ширина*/
+    height: 150px; /*высота*/
+    float: left;
+    text-align: center;
+    overflow: hidden;
+    background-color: #fff;
+    border: 5px double #4a90e2;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+    #Menu:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    }
+.user-photo {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #4a90e2;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.user-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2a2a2a;
+}
+
+.user-role {
+    font-size: 14px;
+    color: #555;
+}
+/*Вход модальное окно*/
+
+/**/
+    #registerModal,
+#successModal {
+    display: none;
+}
+/* Кнопка открытия */
+.open-modal-btn {
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+/* Задний фон модального окна */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Содержимое модального окна */
+.modalvhod {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    width: 300px;
+    max-height: 90%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Текстовые поля */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select {
+    border-radius: 25px;
+    padding: 10px 15px;
+    margin: 10px 0;
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
+/* Кнопки */
+.modal-btn,
+.close-modal-btn,
+.modal-reg {
+    border-radius: 25px;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+.close-modal-btn {
+    background-color: #f44336;
+}
+
+/* Счётчик стажа */
+.counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+    .counter button {
+        border-radius: 25px;
+        border: none;
+        padding: 5px 10px;
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+    }
+
+.small-input {
+    width: 60px;
+    text-align: center;
+}
+
+input[type="date"] {
+    border-radius: 25px;
+    padding: 10px 15px;
+    margin: 10px 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+label[for="birthdate"] {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+label[for="stash"] {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+/*Конец модального окна*/
+/**/
+.nearsttime {
+    width: 60%; /*ширина*/
+    height: 100px; /*высота*/
+    float: left;
+    text-align: center;
+    overflow: hidden;
+    background-color: #fff;
+    border: 5px double #4a90e2;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* можно увеличить высоту, если нужно больше места */
+    height: auto;
+    padding: 10px;
+}
+.nearsttime:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    }
+/*время в центре*/
+.timer-container {
+    padding: 10px 20px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    border: 5px double #4a90e2;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+    background-color: #fff;
+    color: #333;
+}
+
+.time-units {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+    .time-units div {
+        margin: 10px;
+    }
+
+    .time-units span {
+        display: block;
+        font-size: 2em;
+        font-weight: bold;
+    }
+    /*Поле добавления события*/
+
+.controls {
+    margin-top: 20px;
+    margin-left: 500px;
+}
+    .controls button {
+        margin: 5px;
+        padding: 40px 10px;
+        border: none;
+        border-radius: 25px;
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+    }
+#theme-toggle {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+/* Модальное окно */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.switch-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    border-radius: 34px;
+    transition: .4s;
+}
+.slider:before {
+    content: "";
+    position: absolute;
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .4s;
+}
+input:checked + .slider {
+    background-color: #4CAF50;
+}
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+textarea {
+    resize: none;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Темная тема */
+body.dark-theme {
+    background-color: #121212;
+    color: yellow;
+}
+body.dark-theme .timer-container,
+body.dark-theme .modal-content {
+    background-color: #1c1c1c;
+    border-color: yellow;
+    color: yellow;
+}
+body.dark-theme .controls button,
+body.dark-theme .modal-buttons button {
+    background-color: #1e88e5;
+    color: yellow;
+}
+/*Поле добавления события*/
+.user-list {
+    width: 100%;
+    padding: 10px;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 10px 0;
+}
+
+.user-list label {
+    padding: 8px 12px;
+    border-radius: 25px;
+    background-color: #e7f7e7;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.user-list input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.user-list label.checked {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Тёмная тема */
+body.dark-theme .user-list {
+    background-color: #1c1c1c;
+    border-color: yellow;
+}
+
+body.dark-theme .user-list label {
+    background-color: #263238;
+    color: yellow;
+}
+
+body.dark-theme .user-list label.checked {
+    background-color: #1e88e5;
+    color: yellow;
+}
+
+.customization {
+    width: 20%; /*ширина*/
+    height: 100px; /*высота*/
+    float: left;
+    text-align: center;
+    overflow: hidden;
+    background-color: #fff;
+    border: 5px double #4a90e2;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+    .customization:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    }
+/* НАЧАЛО МОДАЛЬНОГО ОКНА НАСТРОЕК */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-settings {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Тумблер блока */
+.theme-toggle-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #4CAF50;
+    border-radius: 25px;
+    padding: 5px 15px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.theme-label {
+    font-weight: bold;
+    color: white;
+}
+
+/* Стили тумблера */
+.big-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+    .big-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+.big-slider {
+    position: absolute;
+    cursor: pointer;
+    background-color: #ccc;
+    border-radius: 34px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: 0.4s;
+}
+
+    .big-slider:before {
+        content: "";
+        position: absolute;
+        height: 22px;
+        width: 22px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        border-radius: 50%;
+        transition: 0.4s;
+    }
+
+input:checked + .big-slider {
+    background-color: #4CAF50;
+}
+
+    input:checked + .big-slider:before {
+        transform: translateX(30px);
+    }
+/* КОНЕЦ МОДАЛЬНОГО ОКНА НАСТРОЕК */
+
+.blockChatov {
+    width: 260px; /*ширина*/
+    height: 63%; /*высота*/
+    position: absolute; /* позиция отностительно меню*/
+    top: 264px;
+    /* padding-bottom: 10px; /* внутренний отступ сверху*/
+    /* margin-bottom: 150px; /* внешний отступ светху*/
+    text-align: center;
+    float: left;
+    background-color: #fff;
+    border: 5px double #4a90e2;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+    .blockChatov:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    }
+    /*отображение запис событий*/
+.chat-events-list {
+    margin-top: 10px;
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+    max-height: 500px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chat-event {
+    background-color: #f2f8ff;
+    border: 1px solid #4a90e2;
+    border-radius: 10px;
+    padding: 8px;
+}
+
+body.dark-theme .chat-event {
+    background-color: #1c1c1c;
+    border-color: yellow;
+    color: yellow;
+}
+/*отображение запис событий*/
+.timedeadlain1 {
+    width: 259px; /*ширина*/
+    height: 300px; /*высота*/
+    position: fixed; /* позиция отностительно меню*/
+    right: 280px; /* всегда у правого края */
+    width: 260px;
+    top: 220px;
+    float: left; /* скрывает выступающие символы*/
+    z-index: 999;
+    text-align: center;
+    overflow: hidden;
+    background-color: #fff;
+    border: 5px double #4a90e2;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+    .timedeadlain1:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    }
+.timedeadlain2 {
+    width: 259px; /*ширина*/
+    height: 305px; /*высота*/
+    position: fixed; /* позиция отностительно меню*/
+    right: 280px; /* всегда у правого края */
+    width: 260px;
+    top: 525px;
+    z-index: 999;
+    float: left;
+    text-align: center;
+    overflow: hidden;
+    background-color: #fff;
+    border: 5px double #4a90e2;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+    .timedeadlain2:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    }
+.delete-event {
+    margin-top: 5px;
+    padding: 4px 10px;
+    font-size: 12px;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+    .delete-event:hover {
+        background: #cc0000;
+    }
+
+
+.event-card {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background: #fff;
+    border-left: 8px solid #999;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+    margin-bottom: 15px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+    .event-card .icon {
+        font-size: 22px;
+    }
+
+    .event-card .info {
+        line-height: 1.3;
+    }
+
+    .event-card .description {
+        font-weight: 500;
+    }
+
+    .event-card .date {
+        font-size: 12px;
+        color: #666;
+    }
+
+    .event-card.deadline {
+        border-left-color: #ff4d4d;
+    }
+
+    .event-card.meeting {
+        border-left-color: #4caf50;
+    }
+.event-image {
+    text-align: center;
+    margin-top: 10px;
+}
+
+    .event-image img {
+        width: 64px;
+        height: auto;
+        opacity: 0.9;
+    }
+    /*div календаря*/
+.calendar-back {
+    width: 775px; /*ширина*/
+    height: 493px; /*высота*/
+    position: relative; /* позиция отностительно меню*/
+    margin-top: 9px;
+    left: 20%;
+    z-index: 1;
+    float: left;
+    text-align: center;
+    overflow: hidden;
+    background-color: #fff;
+    border: 5px double #4a90e2;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .calendar-back:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    }
+    /*темная тема*/
+body.dark-theme .mainBox,
+body.dark-theme #Menu,
+body.dark-theme .customization,
+body.dark-theme .blockChatov,
+body.dark-theme .timedeadlain1,
+body.dark-theme .timedeadlain2,
+body.dark-theme .nearsttime,
+body.dark-theme .modalvhod,
+body.dark-theme .modal-settings,
+body.dark-theme .double-border-box,
+body.dark-theme .calendar-back {
+    background-color: #1c1c1c;
+    border: 5px double yellow;
+    box-shadow: 0 8px 20px rgba(255, 255, 0, 0.2);
+    color: yellow;
+}
+body.dark-theme {
+    background-color: #121212;
+    color: #FFD700; /* жёлтые надписи */
+}
+    body.dark-theme .user-name,
+    body.dark-theme .user-role,
+    body.dark-theme .date {
+        color: yellow;
+    }
+    body.dark-theme button,
+    body.dark-theme .event-card
+     {
+        background-color: #1E88E5;
+        color: yellow;
+    }
+
+body.dark-theme .theme-toggle-wrapper {
+    background-color: #2a52be;
+}
+
+    body.dark-theme .big-slider {
+        background-color: #555;
+    }
+
+body.dark-theme input:checked + .big-slider {
+    background-color: #1E88E5;
+    }
+
+    body.dark-theme .big-slider:before {
+        background-color: #FFD700;
+    }
+
+
+/*темная тема*/
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap');
+
+:root {
+    --calendar-bg-color: #262829;
+    --calendar-font-color: #FFF;
+    --weekdays-border-bottom-color: #404040;
+    --calendar-date-hover-color: #505050;
+    --calendar-current-date-color: #1b1f21;
+    --calendar-today-color: linear-gradient(to bottom, #03a9f4, #2196f3);
+    --calendar-today-innerborder-color: transparent;
+    --calendar-nextprev-bg-color: transparent;
+    --next-prev-arrow-color: #FFF;
+    --calendar-border-radius: 16px;
+    --calendar-prevnext-date-color: #484848
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.calendar {
+    font-family: 'IBM Plex Sans', sans-serif;
+    position: absolute;
+    top: 5px;
+    left: 20px;
+    margin: auto;
+    width: 450px; /*change as per your design need */
+    min-width: 320px;
+    height: 450px;
+    background: var(--calendar-bg-color);
+    color: var(--calendar-font-color);
+    margin: 20px auto;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-weight: normal;
+    border-radius: var(--calendar-border-radius);
+}
+
+.calendar-inner {
+    padding: 10px 10px;
+}
+
+.calendar .calendar-inner .calendar-body {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+}
+
+    .calendar .calendar-inner .calendar-body div {
+        padding: 4px;
+        min-height: 30px;
+        line-height: 30px;
+        border: 1px solid transparent;
+        margin: 10px 2px 0px;
+    }
+
+        .calendar .calendar-inner .calendar-body div:nth-child(-n+7) {
+            border: 1px solid transparent;
+            border-bottom: 1px solid var(--weekdays-border-bottom-color);
+        }
+
+            .calendar .calendar-inner .calendar-body div:nth-child(-n+7):hover {
+                border: 1px solid transparent;
+                border-bottom: 1px solid var(--weekdays-border-bottom-color);
+            }
+
+        .calendar .calendar-inner .calendar-body div > a {
+            color: var(--calendar-font-color);
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        .calendar .calendar-inner .calendar-body div:hover {
+            border: 1px solid var(--calendar-date-hover-color);
+            border-radius: 4px;
+        }
+
+        .calendar .calendar-inner .calendar-body div.empty-dates:hover {
+            border: 1px solid transparent;
+        }
+
+.calendar .calendar-inner .calendar-controls {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.calendar .calendar-inner .calendar-today-date {
+    display: grid;
+    text-align: center;
+    cursor: pointer;
+    margin: 3px 0px;
+    background: var(--calendar-current-date-color);
+    padding: 8px 0px;
+    border-radius: 10px;
+    width: 80%;
+    margin: auto;
+}
+
+.calendar .calendar-inner .calendar-controls .calendar-year-month {
+    display: flex;
+    min-width: 100px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.calendar .calendar-inner .calendar-controls .calendar-next {
+    text-align: right;
+}
+
+.calendar .calendar-inner .calendar-controls .calendar-year-month .calendar-year-label,
+.calendar .calendar-inner .calendar-controls .calendar-year-month .calendar-month-label {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.calendar .calendar-inner .calendar-body .calendar-today {
+    background: var(--calendar-today-color);
+    border-radius: 4px;
+}
+
+    .calendar .calendar-inner .calendar-body .calendar-today:hover {
+        border: 1px solid transparent;
+    }
+
+    .calendar .calendar-inner .calendar-body .calendar-today a {
+        outline: 2px solid var(--calendar-today-innerborder-color);
+    }
+
+.calendar .calendar-inner .calendar-controls .calendar-next a,
+.calendar .calendar-inner .calendar-controls .calendar-prev a {
+    color: var(--calendar-font-color);
+    font-family: arial, consolas, sans-serif;
+    font-size: 26px;
+    text-decoration: none;
+    padding: 4px 12px;
+    display: inline-block;
+    background: var(--calendar-nextprev-bg-color);
+    margin: 10px 0 10px 0;
+}
+
+    .calendar .calendar-inner .calendar-controls .calendar-next a svg,
+    .calendar .calendar-inner .calendar-controls .calendar-prev a svg {
+        height: 20px;
+        width: 20px;
+    }
+
+        .calendar .calendar-inner .calendar-controls .calendar-next a svg path,
+        .calendar .calendar-inner .calendar-controls .calendar-prev a svg path {
+            fill: var(--next-prev-arrow-color);
+        }
+
+.calendar .calendar-inner .calendar-body .prev-dates,
+.calendar .calendar-inner .calendar-body .next-dates {
+    color: var(--calendar-prevnext-date-color);
+}
+
+    .calendar .calendar-inner .calendar-body .prev-dates:hover,
+    .calendar .calendar-inner .calendar-body .next-dates:hover {
+        border: 1px solid transparent;
+        pointer-events: none;
+    }
+
+
+
+

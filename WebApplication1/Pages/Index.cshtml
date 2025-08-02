@@ -1,0 +1,175 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Основное меню";
+}
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial - scale=1.0" >
+    <title>Календарь</title>
+</head>
+<body>
+    <h1> Главная страница</h1>
+    <div id="Menu" class="mainBox styled-box">
+        <img src="images/whithoutphoto.png" alt="Фото пользователя" class="user-photo">
+        <div class="user-info">
+            <div class="user-name">Иван Петров</div>
+            <div class="user-role">Должность: Директор</div>
+        </div>
+        <button class="open-modal-btn" onclick="openModal()">Вход</button>   
+	</div>
+     <div class="modal-overlay" id="modalOverlay">
+            <div class="modalvhod">
+                <input type="text" id="input" placeholder="Ваш майл">
+                <input type="text" id="input" placeholder="Пароль">
+                <button class="modal-btn" onclick="submitForm()">Войти</button>
+              <button id="openRegisterBtn" class="open-modal-btn">Зарегистрироваться</button>
+<div class="modal-overlay" id="registerModal">
+    <div class="modalvhod">
+        <h2>Регистрация</h2>
+        <input type="text" placeholder="Имя">
+        <input type="text" placeholder="Фамилия">
+        <input type="text" placeholder="Отчество">
+        <input type="email" placeholder="Email" id="email">
+        <label for="birthdate" style="align-self: flex-start; margin-left: 10px;">Дата рождения:</label>
+        <input type="date" id="birthdate" name="birthdate" placeholder="Дата Рождения">
+        <input type="text" placeholder="Организация">
+        <select>
+            <option value="директор">Директор</option>
+            <option value="работник">Работник</option>
+        </select>
+        <label for="stash" style="align-self: flex-start; margin-left: 10px;">Стаж:</label>
+        <div class="counter">
+            <button id="decrease">-</button>
+            <input type="number" id="experience" value="0" min="0" class="small-input">
+            <button id="increase">+</button>
+        </div>
+        <input type="file">
+        <button id="submitBtn" class="modal-reg">Зарегистрироваться</button>
+        <button id="closeModal" class="close-modal-btn">Закрыть</button>
+    </div>
+</div>
+
+
+<div class="modal-overlay" id="successModal">
+    <div class="modalvhod">
+        <h2>Регистрация прошла успешно!</h2>
+        <button id="closeSuccess" class="close-modal-btn">Закрыть</button>
+    </div>
+</div>
+                <button class="close-modal-btn" onclick="closeModal()">Закрыть</button>
+            </div>
+		</div>   
+    <script src="js/ModalVhod.js"></script>
+    <script src="js/modalregist.js"></script>
+    <script src="js/mailchek.js"></script>
+    <script src="js/succsesreg.js"></script>
+    <div class="nearsttime">
+        <div class="timer-container">
+            <h1>До события осталось</h1>
+            <div class="time-units">
+                <div><span id="years">0</span><label>лет</label></div>
+                <div><span id="months">0</span><label>мес</label></div>
+                <div><span id="days">0</span><label>дней</label></div>
+                <div><span id="hours">0</span><label>час</label></div>
+                <div><span id="minutes">0</span><label>мин</label></div>
+                <div><span id="seconds">0</span><label>сек</label></div>
+            </div>
+    </div>
+    </div>
+
+    <div class="customization"  >
+        <p1> <front size="60"> Настройки</front></p1>
+        <button type="button" id="openSettingsBtn" class="open-modal-btn">
+			<img src="images/nastroika.png" alt="no work:(" width="60" height="60">
+        </button>
+    </div>
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal-settings">
+            <h2>Настройки</h2>
+            <div class="theme-toggle-wrapper full-width">
+                <span class="theme-label">Включить уведомления:</span>
+                <label class ="big-switch">
+                   <input type="checkbox">
+                    <span class="big-slider"></span>
+                </label>
+            </div>
+            <!-- Переключатель тёмной темы -->
+            <div class="theme-toggle-wrapper full-width">
+                <span class="theme-label">Тёмная тема:</span>
+                <label class="big-switch">
+                    <input type="checkbox" id="themeToggle">
+                    <span class="big-slider"></span>
+                </label>
+            </div>
+            <button class="close-modal-btn full-width" id="closeSettingsModal">Закрыть</button>
+        </div>
+    </div>
+    <script src="js/DarkTheme.js"></script>
+    <div class="blockChatov">
+		<p1> <front size="60"> Запланированные события</front></p1>
+        <div id="chat-events" class="chat-events-list"></div>
+	</div>
+    <div class="calendar-back">
+        <div class="calendar"></div>
+        <div class="controls">
+            <button id="set-date">Установить дату</button>
+            <button id="theme-toggle">Сменить тему</button>
+        </div>
+    </div>
+    <!--Начало Модалка добавление ивента -->
+
+    <div class="modal-overlay" id="modal">
+        <div class="modalvhod">
+            <h2>Новое событие</h2>
+
+            <label class="switch-label">
+             
+               
+            </label>
+
+            <div class="user-list" id="user-checkbox-list">
+                <strong>Директор</strong>
+                <label><input type="checkbox" value="Иван Петров"> Иван Петров</label>
+                <label><input type="checkbox" value="Марина Смирнова"> Марина Смирнова</label>
+
+                <strong>Работник</strong>
+                <label><input type="checkbox" value="Алексей Иванов"> Алексей Иванов</label>
+                <label><input type="checkbox" value="Елена Кузнецова"> Елена Кузнецова</label>
+                <label><input type="checkbox" value="Сергей Орлов"> Сергей Орлов</label>
+            </div>
+
+            <label class="switch-label" style="flex-direction: column; align-items: flex-start;">
+                Тип события:
+                <select id="event-type">
+                    <option>Планерка</option>
+                    <option>Собрание</option>
+                    <option>Встреча</option>
+                    <option>Дедлайн</option>
+                </select>
+            </label>
+
+            <label for="datetime">Дата и время:</label>
+            <input type="datetime-local" id="datetime" required>
+
+            <label for="description">Описание:</label>
+            <textarea id="description" rows="3" placeholder="Описание события..."></textarea>
+
+            <button class="modal-btn" id="save-date">Сохранить</button>
+            <button class="close-modal-btn" id="close-modal">Отмена</button>
+        </div>
+    </div>
+    <!--Конец Модалка добавление ивента -->
+
+    <div id="timeland1" class="timedeadlain1"></div>
+    <div id="timeland2" class="timedeadlain2"></div>
+	<script src="js/eventsToChat.js"></script>
+    <script src="js/timerDobav.js"></script>
+    
+
+   
+</body>
+</html>

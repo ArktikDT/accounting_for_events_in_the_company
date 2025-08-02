@@ -1,0 +1,104 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Основное меню";
+}
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Формы</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .form-container {
+      background-color: #4CAF50;
+      padding: 30px;
+      border-radius: 15px;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    input[type="text"], input[type="password"], input[type="email"], input[type="date"] {
+      border-radius: 25px;
+      border: none;
+      padding: 10px 15px;
+      margin: 10px 0;
+      width: 100%;
+    }
+    button {
+      border-radius: 25px;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    #form1, #form2, #form3 {
+      display: none;
+    }
+    .active {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+
+<div id="form1" class="form-container active">
+  <input type="email" placeholder="Email" id="email1">
+  <input type="password" placeholder="Пароль" id="password">
+  <button onclick="login()">Вход</button>
+  <button onclick="showForm(2)">Присоединяйтесь к нам</button>
+</div>
+
+<div id="form2" class="form-container">
+  <input type="text" placeholder="Имя" id="fname">
+  <input type="text" placeholder="Фамилия" id="lname">
+  <input type="date" id="birth">
+  <input type="email" placeholder="Email" id="email2">
+  <input type="text" placeholder="Организация" id="org">
+  <button onclick="register()">Зарегистрироваться</button>
+</div>
+
+<div id="form3" class="form-container">
+  <p>Добро пожаловать! Регистрация прошла успешно.</p>
+</div>
+
+<script>
+  function showForm(n) {
+    document.getElementById('form1').classList.remove('active');
+    document.getElementById('form2').classList.remove('active');
+    document.getElementById('form3').classList.remove('active');
+    document.getElementById('form' + n).classList.add('active');
+  }
+
+  function register() {
+    const fname = document.getElementById('fname').value.trim();
+    const lname = document.getElementById('lname').value.trim();
+    const birth = document.getElementById('birth').value;
+    const email = document.getElementById('email2').value.trim();
+    const org = document.getElementById('org').value.trim();
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!fname || !lname || !birth || !email || !org || !emailRegex.test(email)) {
+      alert('Пожалуйста, заполните все поля корректно.');
+      return;
+    }
+
+    showForm(3);
+  }
+
+  function login() {
+    alert("Вход не реализован. Используйте регистрацию.");
+  }
+</script>
+
+</body>

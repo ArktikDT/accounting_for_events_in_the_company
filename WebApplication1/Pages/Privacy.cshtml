@@ -1,0 +1,56 @@
+﻿@page
+@model PrivacyModel
+@{
+    ViewData["Title"] = "Основное меню";
+}
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Календарь</title>
+</head>
+<body>
+    <header class="container-fluid">
+       <div class=" container">
+            <img src="images/whithoutphoto.png" alt="no work:(" width="60" height="60" title="Это вы!">
+       </div>
+
+        <button id="openModal">Открыть модальное окно</button>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Модальное окно</h2>
+                <div class="form-container">
+                    <label for="photoUpload" class="photo-label">Загрузите фотографию:</label>
+                    <input type="file" id="photoUpload" accept="image/*" class="photo-input">
+
+                    <label for="firstName">Имя:</label>
+                    <input type="text" id="firstName" required>
+
+                    <label for="lastName">Фамилия:</label>
+                    <input type="text" id="lastName" required>
+
+                    <label for="middleName">Отчество:</label>
+                    <input type="text" id="middleName">
+
+                    <label for="birthDate">Дата рождения:</label>
+                    <input type="date" id="birthDate" required>
+
+                    <label for="experience">Стаж (лет):</label>
+                    <input type="number" id="experience" min="0">
+
+                    <label for="profession">Род деятельности:</label>
+                    <input type="text" id="profession" required>
+
+                    <button type="submit" class="submit-button">Отправить</button>
+                </div>
+            </div>
+        </div>
+
+        
+        <script src="js/modelokno.js"></script>
+    </header>
+</body>
+
+</html>
